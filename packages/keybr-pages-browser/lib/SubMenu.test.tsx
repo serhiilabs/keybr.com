@@ -22,7 +22,7 @@ test("render", () => {
         settings: null,
       }}
     >
-      <PreferredLocaleContext.Provider value="pl">
+      <PreferredLocaleContext.Provider value="en">
         <FakeIntlProvider>
           <MemoryRouter>
             <SubMenu currentPath="/page" />
@@ -32,8 +32,7 @@ test("render", () => {
     </PageDataContext.Provider>,
   );
 
-  isNotNull(r.queryByText("Polski"));
-  isNotNull(r.queryByText("English"));
+  isNotNull(r.queryByText("Github"));
 
   r.unmount();
 });

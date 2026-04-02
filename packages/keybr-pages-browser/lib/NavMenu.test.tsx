@@ -22,7 +22,7 @@ test("render", () => {
         settings: null,
       }}
     >
-      <PreferredLocaleContext.Provider value="pl">
+      <PreferredLocaleContext.Provider value="en">
         <FakeIntlProvider>
           <MemoryRouter>
             <NavMenu currentPath="/page" />
@@ -32,9 +32,10 @@ test("render", () => {
     </PageDataContext.Provider>,
   );
 
+  isNotNull(r.queryByText("typer.top"));
+  isNotNull(r.queryByText("UA"));
+  isNotNull(r.queryByText("EN"));
   isNotNull(r.queryByText("userName"));
-  isNotNull(r.queryByText("Polski"));
-  isNotNull(r.queryByText("English"));
 
   r.unmount();
 });
