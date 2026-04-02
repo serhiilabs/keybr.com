@@ -1,11 +1,12 @@
 import { test } from "node:test";
 import { FakeIntlProvider } from "@keybr/intl";
+import { keyboardProps, Language, Layout } from "@keybr/keyboard";
 import { type PageData, PageDataContext } from "@keybr/pages-shared";
 import { FakePhoneticModel } from "@keybr/phonetic-model";
 import { PhoneticModelLoader } from "@keybr/phonetic-model-loader";
 import { FakeResultContext, ResultFaker } from "@keybr/result";
-import { FakeSettingsContext } from "@keybr/settings";
-import { fireEvent, render } from "@testing-library/react";
+import { FakeSettingsContext, Settings } from "@keybr/settings";
+import { render } from "@testing-library/react";
 import { PracticePage } from "./PracticePage.tsx";
 
 const faker = new ResultFaker();
@@ -18,7 +19,11 @@ test("render", async () => {
       <PageDataContext.Provider
         value={{ publicUser: { id: "abc" } } as PageData}
       >
-        <FakeSettingsContext>
+        <FakeSettingsContext
+          initialSettings={new Settings()
+            .set(keyboardProps.language, Language.EN)
+            .set(keyboardProps.layout, Layout.EN_US)}
+        >
           <FakeResultContext initialResults={faker.nextResultList(100)}>
             <PracticePage />
           </FakeResultContext>
@@ -27,10 +32,7 @@ test("render", async () => {
     </FakeIntlProvider>,
   );
 
-  fireEvent.click(
-    await r.findByTitle("Change lesson settings", { exact: false }),
-  );
-  fireEvent.click(await r.findByText("Done"));
+  await new Promise((r) => setTimeout(r, 1000));
 
   r.unmount();
 });

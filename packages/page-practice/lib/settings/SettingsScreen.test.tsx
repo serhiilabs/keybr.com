@@ -1,9 +1,10 @@
 import { test } from "node:test";
 import { FakeIntlProvider } from "@keybr/intl";
+import { keyboardProps, Language, Layout } from "@keybr/keyboard";
 import { FakePhoneticModel } from "@keybr/phonetic-model";
 import { PhoneticModelLoader } from "@keybr/phonetic-model-loader";
 import { FakeResultContext, ResultFaker } from "@keybr/result";
-import { FakeSettingsContext } from "@keybr/settings";
+import { FakeSettingsContext, Settings } from "@keybr/settings";
 import { fireEvent, render } from "@testing-library/react";
 import { isNotNull } from "rich-assert";
 import { SettingsScreen } from "./SettingsScreen.tsx";
@@ -15,7 +16,11 @@ test("render", async () => {
 
   const r = render(
     <FakeIntlProvider>
-      <FakeSettingsContext>
+      <FakeSettingsContext
+        initialSettings={new Settings()
+          .set(keyboardProps.language, Language.EN)
+          .set(keyboardProps.layout, Layout.EN_US)}
+      >
         <FakeResultContext initialResults={faker.nextResultList(100)}>
           <SettingsScreen />
         </FakeResultContext>
