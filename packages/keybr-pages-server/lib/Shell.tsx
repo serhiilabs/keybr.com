@@ -13,7 +13,7 @@ import { ThemePrefs, useTheme } from "@keybr/themes";
 import { type ReactNode } from "react";
 import { useIntl } from "react-intl";
 import { isBot } from "./bot.ts";
-import { AltLangLinks, favIcons, Metas } from "./meta.tsx";
+import { AltLangLinks, favIcons, Metas, StructuredData } from "./meta.tsx";
 
 export function Shell({
   page,
@@ -59,6 +59,7 @@ function Head({
     <head>
       <meta charSet="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="yandex" content="none" />
       <title>{formatMessage(page.title)}</title>
       <Metas page={page} />
       <AltLangLinks page={page} />
@@ -66,6 +67,7 @@ function Head({
       <StylesheetAssets entrypoint="browser" />
       <PageDataScript />
       <ScriptAssets entrypoint="browser" />
+      <StructuredData />
       {children}
     </head>
   );

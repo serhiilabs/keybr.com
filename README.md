@@ -1,8 +1,8 @@
 # typer.top - typing trainer
 
-Open-source adaptive typing trainer with Ukrainian and English language support.
+**[typer.top](https://typer.top)** - free adaptive typing trainer for Ukrainian and English languages. Practice touch typing with smart lessons that adapt to your skill level.
 
-Fork of [keybr.com](https://github.com/aradzie/keybr.com) by Aliaksandr Radzivanovich. Modified 2025.
+Open-source fork of [keybr.com](https://github.com/aradzie/keybr.com) by Aliaksandr Radzivanovich. Modified 2025.
 
 ## Features
 

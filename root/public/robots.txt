@@ -1,6 +1,9 @@
+User-agent: Yandex
+Disallow: /
+
 User-agent: *
 Disallow: /auth/*
 Disallow: /login/*
 Disallow: /_/*
-Disallow: /assets/*.js
-Disallow: /assets/*.css
+
+Sitemap: https://typer.top/sitemap.xml
