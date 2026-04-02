@@ -5,8 +5,8 @@ services:
     image: ghcr.io/serhiilabs/typer-app:latest
     env_file: .env
     ports:
-      - "127.0.0.1:3100:3000"
-      - "127.0.0.1:3101:3001"
+      - "3100:3000"
+      - "3101:3001"
     volumes:
       - app-data:/data
     restart: unless-stopped
