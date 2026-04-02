@@ -10,7 +10,7 @@ export function FakeIntlProvider({
 }): ReactNode {
   return (
     <IntlProvider
-      locale={defaultLocale}
+      locale="en"
       timeZone="UTC"
       defaultRichTextElements={defaultRichTextElements}
     >
