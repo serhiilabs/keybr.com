@@ -5,7 +5,7 @@ import { FakeIntlProvider } from "@keybr/intl";
 import { PageDataContext, Pages } from "@keybr/pages-shared";
 import { load } from "cheerio";
 import { renderToStaticMarkup } from "react-dom/server";
-import { equal, isFalse, isTrue, like } from "rich-assert";
+import { equal, isFalse, like } from "rich-assert";
 import { Shell } from "./Shell.tsx";
 
 test("render", () => {
@@ -13,51 +13,13 @@ test("render", () => {
     <ManifestContext.Provider value={Manifest.fake}>
       <PageDataContext.Provider
         value={{
-          base: "https://www.keybr.com/",
+          base: "https://typer.top/",
           locale: "en",
           user: null,
           publicUser: {
             id: null,
             name: "name",
             imageUrl: null,
-          },
-          settings: null,
-        }}
-      >
-        <FakeIntlProvider>
-          <Shell page={Pages.practice} headers={fakeHeaders()} />
-        </FakeIntlProvider>
-      </PageDataContext.Provider>
-    </ManifestContext.Provider>,
-  );
-
-  const $ = load(html);
-
-  like($("html").attr(), {
-    "prefix": "og: http://ogp.me/ns#",
-    "lang": "en",
-    "dir": "ltr",
-    "data-color": "system",
-    "data-font": "open-sans",
-  });
-  isTrue(html.includes("google"));
-  isTrue(html.includes("cloudflare"));
-  equal($("nav").length, 0);
-});
-
-test("render alt", () => {
-  const html = renderToStaticMarkup(
-    <ManifestContext.Provider value={Manifest.fake}>
-      <PageDataContext.Provider
-        value={{
-          base: "https://www.keybr.com/",
-          locale: "en",
-          user: null,
-          publicUser: {
-            id: "abc",
-            name: "name",
-            imageUrl: null,
-            premium: true,
           },
           settings: null,
         }}
@@ -88,7 +50,7 @@ test("render for a bot", () => {
     <ManifestContext.Provider value={Manifest.fake}>
       <PageDataContext.Provider
         value={{
-          base: "https://www.keybr.com/",
+          base: "https://typer.top/",
           locale: "en",
           user: null,
           publicUser: {

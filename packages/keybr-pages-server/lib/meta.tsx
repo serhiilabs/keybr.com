@@ -1,5 +1,5 @@
 import { type FavIconLink } from "@keybr/assets";
-import { allLocales } from "@keybr/intl";
+import { defaultLocale } from "@keybr/intl";
 import { type PageInfo, Pages, usePageData } from "@keybr/pages-shared";
 import { type ReactNode } from "react";
 import { useIntl } from "react-intl";
@@ -17,7 +17,7 @@ export function Metas({ page }: { readonly page: PageInfo }): ReactNode {
 }
 
 export function AltLangLinks({ page }: { readonly page: PageInfo }): ReactNode {
-  const { base } = usePageData();
+  const { base, locale } = usePageData();
   if (
     page.meta.some(
       ({ name, content }) =>
@@ -28,13 +28,19 @@ export function AltLangLinks({ page }: { readonly page: PageInfo }): ReactNode {
   ) {
     return null;
   }
-  return allLocales
-    .map((locale) => ({
-      href: String(new URL(Pages.intlPath(page.path, locale), base)),
-      rel: "alternate",
-      hrefLang: locale,
-    }))
-    .map((link) => <link key={link.href} {...link} />);
+  const supportedLocales = [defaultLocale, "en"] as const;
+  const canonicalHref = String(
+    new URL(Pages.intlPath(page.path, locale), base),
+  );
+  return (
+    <>
+      <link rel="canonical" href={canonicalHref} />
+      {supportedLocales.map((loc) => {
+        const href = String(new URL(Pages.intlPath(page.path, loc), base));
+        return <link key={href} href={href} rel="alternate" hrefLang={loc} />;
+      })}
+    </>
+  );
 }
 
 export const favIcons: readonly FavIconLink[] = [

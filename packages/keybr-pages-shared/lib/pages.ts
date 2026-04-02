@@ -30,20 +30,53 @@ export type PageInfo = {
 
 export namespace Pages {
   const meta: Meta[] = [
-    { property: "fb:app_id", content: "545353762151265" },
     { property: "og:type", content: "website" },
-    { property: "og:url", content: "https://www.keybr.com/" },
-    { property: "og:site_name", content: "keybr.com - Typing lessons" },
-    { property: "og:title", content: "keybr.com - Typing lessons" },
+    { property: "og:url", content: "https://typer.top/" },
+    { property: "og:site_name", content: "typer.top" },
+    {
+      property: "og:title",
+      content: defineMessage({
+        id: "meta.og.title",
+        defaultMessage:
+          "Typer | Online Typing Trainer | Learn Touch Typing Free",
+      }),
+    },
     {
       property: "og:description",
-      content:
-        "Teaching the world to type at the speed of thought! Typing lessons that work.",
+      content: defineMessage({
+        id: "meta.og.description",
+        defaultMessage:
+          "Free online typing trainer with adaptive lessons. Practice touch typing, improve your speed and accuracy. Ukrainian and English keyboard layouts.",
+      }),
     },
-    { property: "og:image", content: "https://www.keybr.com/cover.png" },
-    { name: "twitter:card", content: "summary" },
-    { name: "twitter:site", content: "@keybrcom" },
-    { name: "twitter:creator", content: "@keybrcom" },
+    { property: "og:image", content: "https://typer.top/cover.png" },
+    { property: "og:locale", content: "uk_UA" },
+    { name: "twitter:card", content: "summary_large_image" },
+    {
+      name: "twitter:title",
+      content: defineMessage({
+        id: "meta.og.title",
+        defaultMessage:
+          "Typer | Online Typing Trainer | Learn Touch Typing Free",
+      }),
+    },
+    {
+      name: "twitter:description",
+      content: defineMessage({
+        id: "meta.og.description",
+        defaultMessage:
+          "Free online typing trainer with adaptive lessons. Practice touch typing, improve your speed and accuracy. Ukrainian and English keyboard layouts.",
+      }),
+    },
+    { name: "twitter:image", content: "https://typer.top/cover.png" },
+    {
+      name: "keywords",
+      content: defineMessage({
+        id: "meta.keywords",
+        defaultMessage:
+          "typing trainer, touch typing, typing practice, typing test, learn to type, typing tutor, keyboard trainer",
+      }),
+    },
   ];
 
   export const account = {
@@ -64,8 +97,8 @@ export namespace Pages {
   export const practice = {
     path: "/",
     title: defineMessage({
-      id: "t_Practice",
-      defaultMessage: "Practice",
+      id: "page.practice.title",
+      defaultMessage: "Typer | Online Typing Trainer | Learn Touch Typing Free",
     }),
     link: {
       label: defineMessage({
@@ -75,7 +108,7 @@ export namespace Pages {
       title: defineMessage({
         id: "page.practice.description",
         defaultMessage:
-          "Typing practice lessons to improve your speed and accuracy.",
+          "Free online typing trainer with adaptive lessons. Practice touch typing, improve your speed and accuracy.",
       }),
       icon: mdiKeyboard,
     },
@@ -86,7 +119,7 @@ export namespace Pages {
         content: defineMessage({
           id: "page.practice.description",
           defaultMessage:
-            "Typing practice lessons to improve your speed and accuracy.",
+            "Free online typing trainer with adaptive lessons. Practice touch typing, improve your speed and accuracy.",
         }),
       },
     ],
@@ -213,7 +246,7 @@ export namespace Pages {
       }),
       title: defineMessage({
         id: "page.typingTest.description",
-        defaultMessage: "Typing speed and accuracy test.",
+        defaultMessage: "Typing speed test: check your WPM and accuracy.",
       }),
       icon: mdiSpeedometer,
     },
